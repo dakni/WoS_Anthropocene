@@ -1,12 +1,16 @@
 ---
 title: Bibliometric analysis of the term "Anthropocene"
-author: Daniel Knitter
+author: Daniel Knitter, Katja Augustin, Ehsan Biniyaz, Wolfgang Hamer, Michael Kuhwald, Malte Schwanebeck, Rainer Duttmann
 date: "`r Sys.Date()`"
 bibliography: references.bib
 output: md_document
 ---
 
 Data was downloaded on Di 19. Dez 11:51:54 CET 2017 from [Web of Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=) using query "anthropocene"
+
+# bibliometric analyses
+
+Data preparation and reshaping is conducted using the `bibliometrix` package [@aria2017]. 
 
 ```{r bibliometrix}
 library(magrittr)
@@ -30,9 +34,6 @@ NetMatrix <- biblioNetwork(M = raw_df, analysis = "co-occurrences", network = "k
 net <- networkPlot(NetMatrix, n = 20, Title = "Keyword Co-occurrences", type = "kamada", size=T)
 ```
 
-
-## Other attemps
-
 ```{r tibble}
 library(magrittr)
 library(dplyr)
@@ -41,12 +42,10 @@ wok_field_tags <- read_tsv("data/wos_tags.txt", skip = 1)
 wok_field_tags %>%
   filter(Tag == "SC")
 
-
 library(tidyr)
 raw_tbl <- as.tbl(raw_df)
 
-ResearchArea <- raw_tbl %>%
-  #select(SC) %>%
+ResearchArea <- raw_tbl %>%  
   mutate(SC = strsplit(as.character(SC), ";")) %>%  
   unnest %>%
   mutate(SC = trimws(x = SC, which = "left")) %>%  
@@ -59,8 +58,7 @@ library(ggplot2)
 library(ggrepel)
 
 ra_plot <- ResearchArea %>%
-  na.omit %>%
-  #filter(count > 50) %>%  
+  na.omit %>%  
   mutate(SC = factor(SC, levels = SC[rev(order(count))])) %>%  
   ggplot(mapping = aes(x = SC,y = count)) +
   geom_point() +
@@ -79,7 +77,7 @@ ra_plot <- ResearchArea %>%
        subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords")
 ra_plot
 
-ggsave(filename = "Submit_format/figures/ResearchArea_plot.png",
+ggsave(filename = "ResearchArea_plot.png",
        plot = ra_plot,
        scale = 2,
        width = 15,
@@ -87,34 +85,10 @@ ggsave(filename = "Submit_format/figures/ResearchArea_plot.png",
        dpi = 300,
        device = "png",
        units = "cm")
-
-
-AuthorKeywords <- raw_tbl %>%
-  #select(DE) %>%
-  mutate(DE = strsplit(as.character(DE), ";")) %>%  
-  unnest %>%
-  mutate(DE = trimws(x = DE, which = "left")) %>%
-  mutate(DE = as.factor(DE)) %>%
-  group_by(DE) %>%
-  summarise(count = n()) %>%
-  arrange(desc(count))
-
-library(ggplot2)
-library(ggrepel)
-AuthorKeywords %>%
-  na.omit %>%
-  filter(count > 15) %>%
-  filter(DE != "ANTHROPOCENE") %>%
-  filter(DE != "") %>%  
-  mutate(DE = factor(DE, levels = DE[rev(order(count))])) %>%    
-  ggplot(mapping = aes(x = DE,y = count, label = DE)) +
-  geom_point() +
-  theme_minimal() +  
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank()) + 
-  geom_text_repel() +
-  labs(title = "Author Keywords of resulting from \"Anthropocene\" topic search",
-       subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords (\"Anthropocene\" excluded)")
 ```
 
+# Colophon
+
+```{r }
+devtools::session_info()
+```
