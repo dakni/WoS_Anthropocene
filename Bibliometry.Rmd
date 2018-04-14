@@ -87,6 +87,10 @@ ggsave(filename = "ResearchArea_plot.png",
        units = "cm")
 ```
 
+# References
+
+<div id="refs"></div>
+
 # Colophon
 
 ```{r }

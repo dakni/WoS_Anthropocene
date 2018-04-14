@@ -312,6 +312,13 @@ package (Aria and Cuccurullo 2017).
            device = "png",
            units = "cm")
 
+References
+==========
+
+Aria, Massimo, and Corrado Cuccurullo. 2017. “Bibliometrix: An R-Tool
+for Comprehensive Science Mapping Analysis.” *Journal of Informetrics*
+11 (4). Elsevier: 959–75. <https://doi.org/10.1016/j.joi.2017.08.007>.
+
 Colophon
 ========
 
@@ -472,7 +479,3 @@ Colophon
     ##  local                                 
     ##  CRAN (R 3.4.4)                        
     ##  CRAN (R 3.4.4)
-
-Aria, Massimo, and Corrado Cuccurullo. 2017. “Bibliometrix: An R-Tool
-for Comprehensive Science Mapping Analysis.” *Journal of Informetrics*
-11 (4). Elsevier: 959–75. <https://doi.org/10.1016/j.joi.2017.08.007>.
