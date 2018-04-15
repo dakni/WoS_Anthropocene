@@ -87,6 +87,8 @@ ggsave(filename = "ResearchArea_plot.png",
        units = "cm")
 ```
 
+The analysis is conducted using R [@R] and the contributed packages `rmarkdown` [@rmarkdown], `magrittr` [@magrittr], `bibliometrix` [@aria2017], `dplyr` [@dplyr], `readr` [@readr], `tidyr`  [@tidyr], `ggplot2` [@ggplot2] and  `ggrepel` [@ggrepel].
+
 # References
 
 <div id="refs"></div>
