@@ -9,13 +9,8 @@ Data preparation and reshaping is conducted using the `bibliometrix`
 package (Aria and Cuccurullo 2017).
 
     library(magrittr)
-
-    ## Warning: package 'magrittr' was built under R version 3.4.3
-
     ## devtools::install_github("massimoaria/bibliometrix")
     library(bibliometrix)
-
-    ## Warning: package 'bibliometrix' was built under R version 3.4.4
 
     ## To cite bibliometrix in publications, please use:
     ## 
@@ -235,8 +230,6 @@ package (Aria and Cuccurullo 2017).
     library(magrittr)
     library(dplyr)
 
-    ## Warning: package 'dplyr' was built under R version 3.4.3
-
     ## 
     ## Attaching package: 'dplyr'
 
@@ -249,9 +242,6 @@ package (Aria and Cuccurullo 2017).
     ##     intersect, setdiff, setequal, union
 
     library(readr)
-
-    ## Warning: package 'readr' was built under R version 3.4.3
-
     wok_field_tags <- read_tsv("data/wos_tags.txt", skip = 1)
 
     ## Parsed with column specification:
@@ -263,16 +253,12 @@ package (Aria and Cuccurullo 2017).
     wok_field_tags %>%
       filter(Tag == "SC")
 
-    ## Warning: package 'bindrcpp' was built under R version 3.4.4
-
     ## # A tibble: 1 x 2
     ##   Tag   Description   
     ##   <chr> <chr>         
     ## 1 SC    Research Areas
 
     library(tidyr)
-
-    ## Warning: package 'tidyr' was built under R version 3.4.4
 
     ## 
     ## Attaching package: 'tidyr'
@@ -294,8 +280,6 @@ package (Aria and Cuccurullo 2017).
 
     library(ggplot2)
     library(ggrepel)
-
-    ## Warning: package 'ggrepel' was built under R version 3.4.4
 
     ra_plot <- ResearchArea %>%
       na.omit %>%  
@@ -380,84 +364,155 @@ Colophon
     ## Session info -------------------------------------------------------------
 
     ##  setting  value                       
-    ##  version  R version 3.4.1 (2017-06-30)
-    ##  system   x86_64, mingw32             
-    ##  ui       RTerm                       
-    ##  language (EN)                        
-    ##  collate  German_Germany.1252         
+    ##  version  R version 3.4.4 (2018-03-15)
+    ##  system   x86_64, linux-gnu           
+    ##  ui       X11                         
+    ##  language en_US:en                    
+    ##  collate  en_US.UTF-8                 
     ##  tz       Europe/Berlin               
-    ##  date     2018-04-15
+    ##  date     2018-04-16
 
     ## Packages -----------------------------------------------------------------
 
-    ##  package       * version date       source        
-    ##  assertthat      0.2.0   2017-04-11 CRAN (R 3.4.1)
-    ##  backports       1.1.2   2017-12-13 CRAN (R 3.4.3)
-    ##  base          * 3.4.1   2017-06-30 local         
-    ##  bibliometrix  * 1.9.2   2018-03-28 CRAN (R 3.4.4)
-    ##  bindr           0.1.1   2018-03-13 CRAN (R 3.4.4)
-    ##  bindrcpp      * 0.2.2   2018-03-29 CRAN (R 3.4.4)
-    ##  cli             1.0.0   2017-11-05 CRAN (R 3.4.3)
-    ##  cluster         2.0.6   2017-03-10 CRAN (R 3.4.1)
-    ##  colorspace      1.3-2   2016-12-14 CRAN (R 3.4.1)
-    ##  compiler        3.4.1   2017-06-30 local         
-    ##  crayon          1.3.4   2017-09-16 CRAN (R 3.4.3)
-    ##  datasets      * 3.4.1   2017-06-30 local         
-    ##  devtools        1.13.5  2018-02-18 CRAN (R 3.4.3)
-    ##  digest          0.6.15  2018-01-28 CRAN (R 3.4.3)
-    ##  dplyr         * 0.7.4   2017-09-28 CRAN (R 3.4.3)
-    ##  evaluate        0.10.1  2017-06-24 CRAN (R 3.4.1)
-    ##  factoextra      1.0.5   2017-08-22 CRAN (R 3.4.3)
-    ##  FactoMineR      1.40    2018-03-28 CRAN (R 3.4.4)
-    ##  flashClust      1.01-2  2012-08-21 CRAN (R 3.4.1)
-    ##  ggplot2       * 2.2.1   2016-12-30 CRAN (R 3.4.1)
-    ##  ggrepel       * 0.7.0   2017-09-29 CRAN (R 3.4.4)
-    ##  glue            1.2.0   2017-10-29 CRAN (R 3.4.3)
-    ##  graphics      * 3.4.1   2017-06-30 local         
-    ##  grDevices     * 3.4.1   2017-06-30 local         
-    ##  grid            3.4.1   2017-06-30 local         
-    ##  gtable          0.2.0   2016-02-26 CRAN (R 3.4.1)
-    ##  hms             0.4.2   2018-03-10 CRAN (R 3.4.4)
-    ##  htmltools       0.3.6   2017-04-28 CRAN (R 3.4.1)
-    ##  httr            1.3.1   2017-08-20 CRAN (R 3.4.3)
-    ##  igraph          1.2.1   2018-03-10 CRAN (R 3.4.4)
-    ##  knitr           1.20    2018-02-20 CRAN (R 3.4.4)
-    ##  labeling        0.3     2014-08-23 CRAN (R 3.4.0)
-    ##  lattice         0.20-35 2017-03-25 CRAN (R 3.4.1)
-    ##  lazyeval        0.2.1   2017-10-29 CRAN (R 3.4.3)
-    ##  leaps           3.0     2017-01-10 CRAN (R 3.4.3)
-    ##  magrittr      * 1.5     2014-11-22 CRAN (R 3.4.3)
-    ##  MASS            7.3-47  2017-02-26 CRAN (R 3.4.1)
-    ##  Matrix          1.2-10  2017-05-03 CRAN (R 3.4.1)
-    ##  memoise         1.1.0   2017-04-21 CRAN (R 3.4.3)
-    ##  methods       * 3.4.1   2017-06-30 local         
-    ##  munsell         0.4.3   2016-02-13 CRAN (R 3.4.1)
-    ##  parallel        3.4.1   2017-06-30 local         
-    ##  pillar          1.2.1   2018-02-27 CRAN (R 3.4.4)
-    ##  pkgconfig       2.0.1   2017-03-21 CRAN (R 3.4.1)
-    ##  plyr            1.8.4   2016-06-08 CRAN (R 3.4.1)
-    ##  purrr           0.2.4   2017-10-18 CRAN (R 3.4.3)
-    ##  R6              2.2.2   2017-06-17 CRAN (R 3.4.1)
-    ##  RColorBrewer    1.1-2   2014-12-07 CRAN (R 3.4.0)
-    ##  Rcpp            0.12.16 2018-03-13 CRAN (R 3.4.4)
-    ##  readr         * 1.1.1   2017-05-16 CRAN (R 3.4.3)
-    ##  RISmed          2.1.7   2017-06-06 CRAN (R 3.4.1)
-    ##  rlang           0.2.0   2018-02-20 CRAN (R 3.4.4)
-    ##  rmarkdown       1.9     2018-03-01 CRAN (R 3.4.4)
-    ##  rprojroot       1.3-2   2018-01-03 CRAN (R 3.4.3)
-    ##  rscopus         0.5.3   2017-10-11 CRAN (R 3.4.4)
-    ##  scales          0.5.0   2017-08-24 CRAN (R 3.4.3)
-    ##  scatterplot3d   0.3-41  2018-03-14 CRAN (R 3.4.4)
-    ##  SnowballC       0.5.1   2014-08-09 CRAN (R 3.4.1)
-    ##  stats         * 3.4.1   2017-06-30 local         
-    ##  stringdist      0.9.4.7 2018-03-13 CRAN (R 3.4.4)
-    ##  stringi         1.1.7   2018-03-12 CRAN (R 3.4.4)
-    ##  stringr         1.3.0   2018-02-19 CRAN (R 3.4.4)
-    ##  tibble          1.4.2   2018-01-22 CRAN (R 3.4.4)
-    ##  tidyr         * 0.8.0   2018-01-29 CRAN (R 3.4.4)
-    ##  tidyselect      0.2.4   2018-02-26 CRAN (R 3.4.4)
-    ##  tools           3.4.1   2017-06-30 local         
-    ##  utf8            1.1.3   2018-01-03 CRAN (R 3.4.3)
-    ##  utils         * 3.4.1   2017-06-30 local         
-    ##  withr           2.1.2   2018-03-15 CRAN (R 3.4.4)
-    ##  yaml            2.1.18  2018-03-08 CRAN (R 3.4.4)
+    ##  package       * version    date      
+    ##  assertthat      0.2.0      2017-04-11
+    ##  backports       1.1.2      2017-12-13
+    ##  base          * 3.4.4      2018-03-15
+    ##  bibliometrix  * 1.9.2      2018-03-28
+    ##  bindr           0.1.1      2018-03-13
+    ##  bindrcpp      * 0.2.2.9000 2018-04-09
+    ##  cli             1.0.0      2017-11-05
+    ##  cluster         2.0.7      2018-04-01
+    ##  colorspace      1.3-2      2016-12-14
+    ##  compiler        3.4.4      2018-03-15
+    ##  crayon          1.3.4      2017-09-16
+    ##  datasets      * 3.4.4      2018-03-15
+    ##  devtools        1.13.5     2018-02-18
+    ##  digest          0.6.15     2018-01-28
+    ##  dplyr         * 0.7.4.9004 2018-04-10
+    ##  evaluate        0.10.1     2017-06-24
+    ##  factoextra      1.0.5.999  2017-12-19
+    ##  FactoMineR      1.39       2017-11-10
+    ##  flashClust      1.01-2     2012-08-21
+    ##  ggplot2       * 2.2.1      2016-12-30
+    ##  ggrepel       * 0.7.0      2017-09-29
+    ##  glue            1.2.0      2017-10-29
+    ##  graphics      * 3.4.4      2018-03-15
+    ##  grDevices     * 3.4.4      2018-03-15
+    ##  grid            3.4.4      2018-03-15
+    ##  gtable          0.2.0      2016-02-26
+    ##  hms             0.4.2      2018-03-10
+    ##  htmltools       0.3.6      2017-04-28
+    ##  httr            1.3.1      2017-08-20
+    ##  igraph          1.2.1      2018-03-10
+    ##  knitr           1.20       2018-02-20
+    ##  labeling        0.3        2014-08-23
+    ##  lattice         0.20-35    2017-03-25
+    ##  lazyeval        0.2.1      2017-10-29
+    ##  leaps           3.0        2017-01-10
+    ##  magrittr      * 1.5        2014-11-22
+    ##  MASS            7.3-49     2018-02-23
+    ##  Matrix          1.2-12     2017-11-16
+    ##  memoise         1.1.0      2017-04-21
+    ##  methods       * 3.4.4      2018-03-15
+    ##  munsell         0.4.3      2016-02-13
+    ##  parallel        3.4.4      2018-03-15
+    ##  pillar          1.2.1      2018-02-27
+    ##  pkgconfig       2.0.1      2017-03-21
+    ##  plyr            1.8.4      2016-06-08
+    ##  purrr           0.2.4      2017-10-18
+    ##  R6              2.2.2      2017-06-17
+    ##  RColorBrewer    1.1-2      2014-12-07
+    ##  Rcpp            0.12.16    2018-03-13
+    ##  readr         * 1.1.1      2017-05-16
+    ##  RISmed          2.1.7      2017-06-06
+    ##  rlang           0.2.0.9001 2018-04-09
+    ##  rmarkdown       1.9        2018-03-01
+    ##  rprojroot       1.3-2      2018-01-03
+    ##  rscopus         0.5.3      2017-10-11
+    ##  scales          0.5.0.9000 2017-08-30
+    ##  scatterplot3d   0.3-41     2018-03-14
+    ##  SnowballC       0.5.1      2014-08-09
+    ##  stats         * 3.4.4      2018-03-15
+    ##  stringdist      0.9.4.7    2018-03-13
+    ##  stringi         1.1.7      2018-03-12
+    ##  stringr         1.3.0      2018-02-19
+    ##  tibble          1.4.2      2018-01-22
+    ##  tidyr         * 0.8.0      2018-01-29
+    ##  tidyselect      0.2.4      2018-02-26
+    ##  tools           3.4.4      2018-03-15
+    ##  utf8            1.1.3      2018-01-03
+    ##  utils         * 3.4.4      2018-03-15
+    ##  withr           2.1.2      2018-03-15
+    ##  yaml            2.1.18     2018-03-08
+    ##  source                                
+    ##  CRAN (R 3.4.0)                        
+    ##  CRAN (R 3.4.4)                        
+    ##  local                                 
+    ##  CRAN (R 3.4.4)                        
+    ##  CRAN (R 3.4.4)                        
+    ##  Github (krlmlr/bindrcpp@bd5ae73)      
+    ##  CRAN (R 3.4.2)                        
+    ##  CRAN (R 3.4.4)                        
+    ##  cran (@1.3-2)                         
+    ##  local                                 
+    ##  CRAN (R 3.4.2)                        
+    ##  local                                 
+    ##  CRAN (R 3.4.3)                        
+    ##  cran (@0.6.15)                        
+    ##  Github (tidyverse/dplyr@bfc9b28)      
+    ##  CRAN (R 3.4.1)                        
+    ##  Github (kassambara/factoextra@e76c5bb)
+    ##  CRAN (R 3.4.2)                        
+    ##  CRAN (R 3.4.2)                        
+    ##  CRAN (R 3.4.3)                        
+    ##  cran (@0.7.0)                         
+    ##  cran (@1.2.0)                         
+    ##  local                                 
+    ##  local                                 
+    ##  local                                 
+    ##  cran (@0.2.0)                         
+    ##  CRAN (R 3.4.4)                        
+    ##  CRAN (R 3.4.0)                        
+    ##  CRAN (R 3.4.1)                        
+    ##  CRAN (R 3.4.4)                        
+    ##  CRAN (R 3.4.3)                        
+    ##  CRAN (R 3.4.3)                        
+    ##  CRAN (R 3.4.2)                        
+    ##  cran (@0.2.1)                         
+    ##  CRAN (R 3.4.2)                        
+    ##  CRAN (R 3.4.3)                        
+    ##  CRAN (R 3.4.3)                        
+    ##  CRAN (R 3.4.2)                        
+    ##  CRAN (R 3.4.0)                        
+    ##  local                                 
+    ##  cran (@0.4.3)                         
+    ##  local                                 
+    ##  CRAN (R 3.4.4)                        
+    ##  cran (@2.0.1)                         
+    ##  cran (@1.8.4)                         
+    ##  cran (@0.2.4)                         
+    ##  cran (@2.2.2)                         
+    ##  CRAN (R 3.4.3)                        
+    ##  cran (@0.12.16)                       
+    ##  CRAN (R 3.4.0)                        
+    ##  CRAN (R 3.4.4)                        
+    ##  Github (tidyverse/rlang@9c0637a)      
+    ##  CRAN (R 3.4.3)                        
+    ##  CRAN (R 3.4.4)                        
+    ##  cran (@0.5.3)                         
+    ##  Github (hadley/scales@d767915)        
+    ##  CRAN (R 3.4.4)                        
+    ##  cran (@0.5.1)                         
+    ##  local                                 
+    ##  CRAN (R 3.4.4)                        
+    ##  CRAN (R 3.4.3)                        
+    ##  cran (@1.3.0)                         
+    ##  cran (@1.4.2)                         
+    ##  cran (@0.8.0)                         
+    ##  cran (@0.2.4)                         
+    ##  local                                 
+    ##  cran (@1.1.3)                         
+    ##  local                                 
+    ##  CRAN (R 3.4.4)                        
+    ##  CRAN (R 3.4.4)
