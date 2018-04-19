@@ -59,26 +59,48 @@ ResearchArea <- raw_tbl %>%
 library(ggplot2)
 library(ggrepel)
 
-ra_plot <- ResearchArea %>%
+ra_plot_data <- ResearchArea %>%
   na.omit %>%  
   mutate(SC = factor(SC, levels = SC[rev(order(count))])) %>%
-  filter(count > 5) %>%  
-  ggplot(mapping = aes(x = SC,y = count)) +
-  geom_point() +
+  filter(count > 5)
+
+ra_plot <- ggplot(
+  data = ra_plot_data,
+  mapping = aes(x = SC,y = count)) +
+#  geom_point() +
+  geom_point(color = ifelse(grepl("^GEOGRAPHY",ra_plot_data$SC), "black", "grey50"),
+             size = ifelse(grepl("^GEOGRAPHY",ra_plot_data$SC), 3, 2)) + 
   theme_minimal() +  
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank()) + 
   geom_label_repel(
-    data = subset(x = ResearchArea, subset = ResearchArea$count > 50),
+    data = subset(x = ResearchArea, subset = c(ResearchArea$count > 50 & !grepl("^GEOGRAPHY",ResearchArea$SC))),
     aes(label = SC),
-    size = 5,
+    size = 4,
+    force = 5,
+    segment.colour = "grey50",
+    segment.size = .5,
+    box.padding = 0.25,
+    point.padding = 0.3,            
+    xlim = c(10, NA)
+  ) +
+  geom_label_repel(
+    data = subset(x = ResearchArea, subset = c(ResearchArea$count > 50 & grepl("^GEOGRAPHY",ResearchArea$SC))),
+    aes(label = SC),
+    size = 4,    
+    force = 5,
+    fill = "lightgray",
+    segment.colour = "grey90",
+    segment.size = .5,
     box.padding = 0.25,
     point.padding = 0.3,
+    direction = "x",
     xlim = c(5, NA)
   ) + 
   labs(title = "Tagged Research Areas of scientific articles resulting from \"Anthropocene\" topic search",
        subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords; counts > 5 are shown")
+
 ra_plot
 
 ggsave(filename = "ResearchArea_plot.png",
