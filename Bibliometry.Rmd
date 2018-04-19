@@ -34,6 +34,8 @@ NetMatrix <- biblioNetwork(M = raw_df, analysis = "co-occurrences", network = "k
 net <- networkPlot(NetMatrix, n = 20, Title = "Keyword Co-occurrences", type = "kamada", size=T)
 ```
 
+[Web of Science Core Collection Field Tags](https://images.webofknowledge.com/images/help/WOS/hs_wos_fieldtags.html)
+
 ```{r tibble}
 library(magrittr)
 library(dplyr)
@@ -59,7 +61,8 @@ library(ggrepel)
 
 ra_plot <- ResearchArea %>%
   na.omit %>%  
-  mutate(SC = factor(SC, levels = SC[rev(order(count))])) %>%  
+  mutate(SC = factor(SC, levels = SC[rev(order(count))])) %>%
+  filter(count > 5) %>%  
   ggplot(mapping = aes(x = SC,y = count)) +
   geom_point() +
   theme_minimal() +  
@@ -71,17 +74,18 @@ ra_plot <- ResearchArea %>%
     aes(label = SC),
     size = 5,
     box.padding = 0.25,
-    point.padding = 0.3
+    point.padding = 0.3,
+    xlim = c(5, NA)
   ) + 
-  labs(title = "Research Areas resulting from \"Anthropocene\" topic search",
-       subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords")
+  labs(title = "Tagged Research Areas of scientific articles resulting from \"Anthropocene\" topic search",
+       subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords; counts > 5 are shown")
 ra_plot
 
 ggsave(filename = "ResearchArea_plot.png",
        plot = ra_plot,
        scale = 2,
        width = 15,
-       height = 10,
+       height = 8,
        dpi = 300,
        device = "png",
        units = "cm")
