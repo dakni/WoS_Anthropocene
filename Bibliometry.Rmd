@@ -6,7 +6,16 @@ bibliography: references.bib
 output: md_document
 ---
 
-Data was downloaded on Di 19. Dez 11:51:54 CET 2017 from [Web of Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=) using query "anthropocene"
+Data was downloaded on Fri Apr 20 2018 from [Web of Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=) using advanced search and the query "TS=anthropocene". TS is the Web of Science tag for "Topic Field" and includes the following fields [source](https://images.webofknowledge.com/WOKRS528R15/help/WOS/hs_topic.html):
+
+- Title
+- Abstract
+- Author Keywords
+- Keywords Plus®
+
+The query used the complete Web of Science collection. The timespan was set to the range of 2002 to 2018. Only English language texts, belonging to the document type category "Article" are selected.
+
+The search results were saved, 500 at a time (limit Web of Science), as "Full Record and Cited References" in BibTeX file format. 
 
 # bibliometric analyses
 
@@ -17,24 +26,17 @@ library(magrittr)
 ## devtools::install_github("massimoaria/bibliometrix")
 library(bibliometrix)
 
-raw_data <- readFiles("./data/wos_query_anthropocene/wos_anthropocene_topic_1.bib",
-                      "./data/wos_query_anthropocene/wos_anthropocene_topic_2.bib",
-                      "./data/wos_query_anthropocene/wos_anthropocene_topic_3.bib",
-                      "./data/wos_query_anthropocene/wos_anthropocene_topic_4.bib")
+raw_data <- readFiles("./data/wos_query_anthropocene/wos_anthropocene_topic_0001-500.bib", 
+                      "./data/wos_query_anthropocene/wos_anthropocene_topic_0501-1000.bib",
+                      "./data/wos_query_anthropocene/wos_anthropocene_topic_1001-1500.bib",
+                      "./data/wos_query_anthropocene/wos_anthropocene_topic_1500-1610.bib")
 raw_df <- convert2df(file = raw_data, dbsource = "isi", format = "bibtex")
-
-results <- biblioAnalysis(raw_df, sep = ";")
-
-summary(object = results, k = 10, pause = FALSE)
-plot(x = results, k = 10, pause = FALSE)
-
-# Create keyword co-occurrencies network
-NetMatrix <- biblioNetwork(M = raw_df, analysis = "co-occurrences", network = "keywords", sep = ";")
-# Plot the network
-net <- networkPlot(NetMatrix, n = 20, Title = "Keyword Co-occurrences", type = "kamada", size=T)
 ```
 
 [Web of Science Core Collection Field Tags](https://images.webofknowledge.com/images/help/WOS/hs_wos_fieldtags.html)
+
+Notice that the Tag field "SC" that incorporates the different "Research Areas" is different from the "Research Areas" field in the search mask of the Web of Science webpage whose tag is "SU" [source](https://images.webofknowledge.com/WOKRS528R15/help/WOS/hp_research_areas_easca.html). An example is the SC-tag research area "ENVIRONMENTAL SCIENCES; GEOSCIENCES, MULTIDISCIPLINARY; LIMNOLOGY". In the SU data, only the first entry, environmental science, is present in the form of "Environmental Sciences & Ecology". According to this, the plot on mentioning of the Anthropocene and the table on publications per Research Area (SU search) should not be interpreted together but separately.  
+
 
 ```{r tibble}
 library(magrittr)
@@ -113,13 +115,49 @@ ggsave(filename = "ResearchArea_plot.png",
        units = "cm")
 ```
 
-The analysis is conducted using R [@R] and the contributed packages `rmarkdown` [@rmarkdown], `magrittr` [@magrittr], `bibliometrix` [@aria2017], `dplyr` [@dplyr], `readr` [@readr], `tidyr`  [@tidyr], `ggplot2` [@ggplot2] and  `ggrepel` [@ggrepel].
+Using different advanced searches [search history file]("data/history.wos") the english language text corresponding to the document type "article" and published between 2002 and 2018 were queried:
+
+- for different Research Areas, to yield the complete number of publications
+- for different Research Areas using topic search "anthropocene" to calculate the fraction of anthropocene related articles per discipline
+
+Notes:
+
+- a search for SU "geography", although listed under "social sciences", lists results for both, "physical geography" and "geography". Therefore, the fraction of "Geography (Social Sciences) is calculated by the difference between search for "Geography" and "Physical Geography".
+
+```{r Queries}
+library(dplyr)
+
+queries <- data_frame(
+  "Research Area" = rep(c("Geography","Geography (Social Science)", "Physical Geography","Geology","Environmental Sciences & Ecology","Sociology","Philosophy"), 2),
+  "Search" = c(rep("all Topics", 7), rep("Anthropocene", 7)),
+  "WoS query" = c(12, NA, 9, 8, 5, 15, 13, 11, NA, 10, 7, 4, 14, 2),
+  "Count" = c(111440, NA, 66210, 300769, 766609, 74984, 100220, 275, NA, 147, 231, 476, 40, 78))
+
+queries$Count[queries$`Research Area`=="Geography (Social Science)"] <-
+  queries$Count[queries$`Research Area`=="Geography"] - queries$Count[queries$`Research Area`=="Physical Geography"]
+
+knitr::kable(queries)
+
+all_topics <- queries[queries$Search=="all Topics",]
+anthrop <- queries[queries$Search=="Anthropocene",]
+
+query_fraction <- all_topics %>%    
+  mutate("Count (Anthropocene)" = anthrop$Count,
+         "Fraction (%)" = (anthrop$Count / Count) * 100) %>%
+  select(-Search, -"WoS query")
+  
+knitr::kable(query_fraction)
+```
+
 
 # References
 
 <div id="refs"></div>
 
 # Colophon
+
+The analysis is conducted using R [@R] and the contributed packages `rmarkdown` [@rmarkdown], `magrittr` [@magrittr], `bibliometrix` [@aria2017], `dplyr` [@dplyr], `readr` [@readr], `tidyr`  [@tidyr], `ggplot2` [@ggplot2] and  `ggrepel` [@ggrepel].
+
 
 ```{r }
 devtools::session_info()

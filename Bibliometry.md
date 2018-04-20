@@ -1,6 +1,20 @@
-Data was downloaded on Di 19. Dez 11:51:54 CET 2017 from [Web of
+Data was downloaded on Fri Apr 20 2018 from [Web of
 Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=)
-using query "anthropocene"
+using advanced search and the query "TS=anthropocene". TS is the Web of
+Science tag for "Topic Field" and includes the following fields
+[source](https://images.webofknowledge.com/WOKRS528R15/help/WOS/hs_topic.html):
+
+-   Title
+-   Abstract
+-   Author Keywords
+-   Keywords Plus®
+
+The query used the complete Web of Science collection. The timespan was
+set to the range of 2002 to 2018. Only English language texts, belonging
+to the document type category "Article" are selected.
+
+The search results were saved, 500 at a time (limit Web of Science), as
+"Full Record and Cited References" in BibTeX file format.
 
 bibliometric analyses
 =====================
@@ -18,10 +32,10 @@ package (Aria and Cuccurullo 2017).
     ## 
     ## http:\\www.bibliometrix.org
 
-    raw_data <- readFiles("./data/wos_query_anthropocene/wos_anthropocene_topic_1.bib",
-                          "./data/wos_query_anthropocene/wos_anthropocene_topic_2.bib",
-                          "./data/wos_query_anthropocene/wos_anthropocene_topic_3.bib",
-                          "./data/wos_query_anthropocene/wos_anthropocene_topic_4.bib")
+    raw_data <- readFiles("./data/wos_query_anthropocene/wos_anthropocene_topic_0001-500.bib", 
+                          "./data/wos_query_anthropocene/wos_anthropocene_topic_0501-1000.bib",
+                          "./data/wos_query_anthropocene/wos_anthropocene_topic_1001-1500.bib",
+                          "./data/wos_query_anthropocene/wos_anthropocene_topic_1500-1610.bib")
     raw_df <- convert2df(file = raw_data, dbsource = "isi", format = "bibtex")
 
     ## Articles extracted   100 
@@ -40,192 +54,22 @@ package (Aria and Cuccurullo 2017).
     ## Articles extracted   1400 
     ## Articles extracted   1500 
     ## Articles extracted   1600 
-    ## Articles extracted   1700 
-    ## Articles extracted   1788
+    ## Articles extracted   1610
 
-    results <- biblioAnalysis(raw_df, sep = ";")
+[Web of Science Core Collection Field
+Tags](https://images.webofknowledge.com/images/help/WOS/hs_wos_fieldtags.html)
 
-    summary(object = results, k = 10, pause = FALSE)
-
-    ## 
-    ## 
-    ## Main Information about data
-    ## 
-    ##  Articles                              1788 
-    ##  Sources (Journals, Books, etc.)       720 
-    ##  Keywords Plus (ID)                    4023 
-    ##  Author's Keywords (DE)                4051 
-    ##  Period                                2001 - 2018 
-    ##  Average citations per article         11.08 
-    ## 
-    ##  Authors                               4518 
-    ##  Author Appearances                    5725 
-    ##  Authors of single authored articles   654 
-    ##  Authors of multi authored articles    3864 
-    ## 
-    ##  Articles per Author                   0.396 
-    ##  Authors per Article                   2.53 
-    ##  Co-Authors per Articles               3.2 
-    ##  Collaboration Index                   4.35 
-    ##  
-    ## 
-    ## Annual Scientific Production
-    ## 
-    ##  Year    Articles
-    ##     2001        1
-    ##     2002        3
-    ##     2003        3
-    ##     2004        2
-    ##     2005        5
-    ##     2006        7
-    ##     2007       12
-    ##     2008       17
-    ##     2009       16
-    ##     2010       31
-    ##     2011       50
-    ##     2012       57
-    ##     2013       96
-    ##     2014      174
-    ##     2015      357
-    ##     2016      446
-    ##     2017      509
-    ##     2018        2
-    ## 
-    ## Annual Percentage Growth Rate 4.161601 
-    ## 
-    ## 
-    ## Most Productive Authors
-    ## 
-    ##    Authors        Articles Authors        Articles Fractionalized
-    ## 1   STEFFEN W           21  [ANONYMOUS] A                    9.00
-    ## 2   ZALASIEWICZ J       18  DALBY S                          8.20
-    ## 3   ELLIS EC            14  CASTREE N                        8.05
-    ## 4   WILLIAMS M          14  YUSOFF K                         6.83
-    ## 5   CEARRETA A          12  CLARK N                          6.50
-    ## 6   SVENNING JC         11  MEYBECK M                        5.63
-    ## 7   WOLFE AP            11  LORIMER J                        5.00
-    ## 8   MEYBECK M           10  SKLAIR L                         5.00
-    ## 9   [ANONYMOUS] A        9  THOMAS CD                        5.00
-    ## 10  BIERMANN F           9  CRUTZEN PJ                       4.33
-    ## 
-    ## 
-    ## Top manuscripts per citations
-    ## 
-    ##                                                                                                                                                                                                                                                                                                              Paper         
-    ## 1  STEFFEN W;CRUTZEN PJ;MCNEILL JR,(2007),AMBIO                                                                                                                                                                                                                                                                            
-    ## 2  SMOL JP;WOLFE AP;BIRKS HJB;DOUGLAS MSV;JONES VJ;KORHOLA A;PIENITZ R;RUHLAND K;SORVARI S;ANTONIADES D;BROOKS SJ;FALLU MA;HUGHES M;KEATLEY BE;LAING TE;MICHELUTTI N;NAZAROVA L;NYMAN M;PATERSON AM;PERREN B;QUINLAN R;RAUTIO M;SAULNIER-TALBOT E;SIITONEN S;SOLOVIEVA N;WECKSTROM J,(2005),PROC. NATL. ACAD. SCI. U. S. A.
-    ## 3  CODISPOTI LA;BRANDES JA;CHRISTENSEN JP;DEVOL AH;NAQVI SWA;PAERL HW;YOSHINARI T,(2001),SCI. MAR.                                                                                                                                                                                                                         
-    ## 4  DIRZO R;YOUNG HS;GALETTI M;CEBALLOS G;ISAAC NJB;COLLEN B,(2014),SCIENCE                                                                                                                                                                                                                                                 
-    ## 5  STEFFEN W;GRINEVALD J;CRUTZEN P;MCNEILL J,(2011),PHILOS. TRANS. R. SOC. A-MATH. PHYS. ENG. SCI.                                                                                                                                                                                                                         
-    ## 6  RABALAIS NN;DIAZ RJ;LEVIN LA;TURNER RE;GILBERT D;ZHANG J,(2010),BIOGEOSCIENCES                                                                                                                                                                                                                                          
-    ## 7  STEFFEN W;PERSSON A;DEUTSCH L;ZALASIEWICZ J;WILLIAMS M;RICHARDSON K;CRUMLEY C;CRUTZEN P;FOLKE C;GORDON L;MOLINA M;RAMANATHAN V;ROCKSTROM J;SCHEFFER M;SCHELLNHUBER HJ;SVEDIN U,(2011),AMBIO                                                                                                                             
-    ## 8  GRIGGS D;STAFFORD-SMITH M;GAFFNEY O;ROCKSTROEM J;OEHMAN MC;SHYAMSUNDAR P;STEFFEN W;GLASER G;KANIE N;NOBLE I,(2013),NATURE                                                                                                                                                                                               
-    ## 9  GOLDEWIJK KK;BEUSEN A;VAN DRECHT G;DE   VOS M,(2011),GLOB. ECOL. BIOGEOGR.                                                                                                                                                                                                                                              
-    ## 10 ZALASIEWICZ J;WILLIAMS M;STEFFEN W;CRUTZEN P,(2010),ENVIRON. SCI. TECHNOL.                                                                                                                                                                                                                                              
-    ##     TC TCperYear
-    ## 1  665      60.5
-    ## 2  485      37.3
-    ## 3  426      25.1
-    ## 4  416     104.0
-    ## 5  388      55.4
-    ## 6  328      41.0
-    ## 7  307      43.9
-    ## 8  300      60.0
-    ## 9  270      38.6
-    ## 10 256      32.0
-    ## 
-    ## 
-    ## Most Productive Countries (of corresponding authors)
-    ## 
-    ##      Country   Articles   Freq SCP MCP
-    ## 1  USA              573 0.3379 452 121
-    ## 2  ENGLAND          228 0.1344 160  68
-    ## 3  AUSTRALIA        158 0.0932 112  46
-    ## 4  CANADA           113 0.0666  77  36
-    ## 5  GERMANY           82 0.0483  52  30
-    ## 6  SWEDEN            48 0.0283  30  18
-    ## 7  FRANCE            41 0.0242  29  12
-    ## 8  ITALY             40 0.0236  32   8
-    ## 9  NETHERLANDS       40 0.0236  25  15
-    ## 10 SPAIN             39 0.0230  25  14
-    ## 
-    ## 
-    ## SCP: Single Country Publications
-    ## 
-    ## MCP: Multiple Country Publications
-    ## 
-    ## 
-    ## Total Citations per Country
-    ## 
-    ##       Country      Total Citations Average Article Citations
-    ## 1  USA                        6868                     11.99
-    ## 2  AUSTRALIA                  3035                     19.21
-    ## 3  ENGLAND                    2759                     12.10
-    ## 4  CANADA                     1313                     11.62
-    ## 5  GERMANY                    1006                     12.27
-    ## 6  NETHERLANDS                 759                     18.98
-    ## 7  FRANCE                      729                     17.78
-    ## 8  CHINA                       551                     16.21
-    ## 9  SWEDEN                      518                     10.79
-    ## 10 ITALY                       312                      7.80
-    ## 
-    ## 
-    ## Most Relevant Sources
-    ## 
-    ##                                                                       Sources       
-    ## 1  ANTHROPOCENE                                                                     
-    ## 2  HOLOCENE                                                                         
-    ## 3  PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF   AMERICA
-    ## 4  SCIENCE                                                                          
-    ## 5  QUATERNARY SCIENCE REVIEWS                                                       
-    ## 6  NATURE                                                                           
-    ## 7  ECOLOGY AND SOCIETY                                                              
-    ## 8  THEORY CULTURE \\& SOCIETY                                                       
-    ## 9  CURRENT OPINION IN ENVIRONMENTAL SUSTAINABILITY                                  
-    ## 10 ENVIRONMENTAL HUMANITIES                                                         
-    ##    Articles
-    ## 1        34
-    ## 2        32
-    ## 3        23
-    ## 4        21
-    ## 5        20
-    ## 6        18
-    ## 7        17
-    ## 8        17
-    ## 9        16
-    ## 10       15
-    ## 
-    ## 
-    ## Most Relevant Keywords
-    ## 
-    ##    Author Keywords (DE)      Articles Keywords-Plus (ID)     Articles
-    ## 1             ANTHROPOCENE        539         ANTHROPOCENE        327
-    ## 2             CLIMATE CHANGE      149         CLIMATE-CHANGE      267
-    ## 3             BIODIVERSITY         45         CLIMATE             100
-    ## 4             SUSTAINABILITY       39         SCIENCE              96
-    ## 5             ECOLOGY              38         MANAGEMENT           93
-    ## 6             HOLOCENE             35         BIODIVERSITY         85
-    ## 7             CONSERVATION         30         CONSERVATION         83
-    ## 8             RESILIENCE           28         ECOSYSTEMS           55
-    ## 9             GLOBAL CHANGE        27         HISTORY              54
-    ## 10            CLIMATE              25         ECOLOGY              53
-
-    plot(x = results, k = 10, pause = FALSE)
-
-![](Bibliometry_files/figure-markdown_strict/bibliometrix-1.png)![](Bibliometry_files/figure-markdown_strict/bibliometrix-2.png)![](Bibliometry_files/figure-markdown_strict/bibliometrix-3.png)
-
-    ## Warning: Removed 1 rows containing missing values (position_stack).
-
-    ## Warning: Removed 1 rows containing missing values (geom_path).
-
-![](Bibliometry_files/figure-markdown_strict/bibliometrix-4.png)![](Bibliometry_files/figure-markdown_strict/bibliometrix-5.png)
-
-    # Create keyword co-occurrencies network
-    NetMatrix <- biblioNetwork(M = raw_df, analysis = "co-occurrences", network = "keywords", sep = ";")
-    # Plot the network
-    net <- networkPlot(NetMatrix, n = 20, Title = "Keyword Co-occurrences", type = "kamada", size=T)
-
-![](Bibliometry_files/figure-markdown_strict/bibliometrix-6.png)
+Notice that the Tag field "SC" that incorporates the different "Research
+Areas" is different from the "Research Areas" field in the search mask
+of the Web of Science webpage whose tag is "SU"
+[source](https://images.webofknowledge.com/WOKRS528R15/help/WOS/hp_research_areas_easca.html).
+An example is the SC-tag research area "ENVIRONMENTAL SCIENCES;
+GEOSCIENCES, MULTIDISCIPLINARY; LIMNOLOGY". In the SU data, only the
+first entry, environmental science, is present in the form of
+"Environmental Sciences & Ecology". According to this, the plot on
+mentioning of the Anthropocene and the table on publications per
+Research Area (SU search) should not be interpreted together but
+separately.
 
     library(magrittr)
     library(dplyr)
@@ -281,24 +125,48 @@ package (Aria and Cuccurullo 2017).
     library(ggplot2)
     library(ggrepel)
 
-    ra_plot <- ResearchArea %>%
+    ra_plot_data <- ResearchArea %>%
       na.omit %>%  
-      mutate(SC = factor(SC, levels = SC[rev(order(count))])) %>%  
-      ggplot(mapping = aes(x = SC,y = count)) +
-      geom_point() +
+      mutate(SC = factor(SC, levels = SC[rev(order(count))])) %>%
+      filter(count > 5)
+
+    ra_plot <- ggplot(
+      data = ra_plot_data,
+      mapping = aes(x = SC,y = count)) +
+    #  geom_point() +
+      geom_point(color = ifelse(grepl("^GEOGRAPHY",ra_plot_data$SC), "black", "grey50"),
+                 size = ifelse(grepl("^GEOGRAPHY",ra_plot_data$SC), 3, 2)) + 
       theme_minimal() +  
       theme(axis.title.x=element_blank(),
             axis.text.x=element_blank(),
             axis.ticks.x=element_blank()) + 
       geom_label_repel(
-        data = subset(x = ResearchArea, subset = ResearchArea$count > 50),
+        data = subset(x = ResearchArea, subset = c(ResearchArea$count > 50 & !grepl("^GEOGRAPHY",ResearchArea$SC))),
         aes(label = SC),
-        size = 5,
+        size = 4,
+        force = 5,
+        segment.colour = "grey50",
+        segment.size = .5,
         box.padding = 0.25,
-        point.padding = 0.3
+        point.padding = 0.3,            
+        xlim = c(10, NA)
+      ) +
+      geom_label_repel(
+        data = subset(x = ResearchArea, subset = c(ResearchArea$count > 50 & grepl("^GEOGRAPHY",ResearchArea$SC))),
+        aes(label = SC),
+        size = 4,    
+        force = 5,
+        fill = "lightgray",
+        segment.colour = "grey90",
+        segment.size = .5,
+        box.padding = 0.25,
+        point.padding = 0.3,
+        direction = "x",
+        xlim = c(5, NA)
       ) + 
-      labs(title = "Research Areas resulting from \"Anthropocene\" topic search",
-           subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords")
+      labs(title = "Tagged Research Areas of scientific articles resulting from \"Anthropocene\" topic search",
+           subtitle = "data from Web of Science; Topic Article search term fields are: Title, Abstract, Keywords; counts > 5 are shown")
+
     ra_plot
 
 ![](Bibliometry_files/figure-markdown_strict/tibble-1.png)
@@ -307,17 +175,206 @@ package (Aria and Cuccurullo 2017).
            plot = ra_plot,
            scale = 2,
            width = 15,
-           height = 10,
+           height = 8,
            dpi = 300,
            device = "png",
            units = "cm")
 
-The analysis is conducted using R (R Core Team 2017) and the contributed
-packages `rmarkdown` (Allaire et al. 2018), `magrittr` (Bache and
-Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
-(Wickham et al. 2017), `readr` (Wickham, Hester, and Francois 2017),
-`tidyr` (Wickham and Henry 2018), `ggplot2` (Wickham 2009) and `ggrepel`
-(Slowikowski 2017).
+Using different advanced searches [search history
+file](%22data/history.wos%22) the english language text corresponding to
+the document type "article" and published between 2002 and 2018 were
+queried:
+
+-   for different Research Areas, to yield the complete number of
+    publications
+-   for different Research Areas using topic search "anthropocene" to
+    calculate the fraction of anthropocene related articles per
+    discipline
+
+Notes:
+
+-   a search for SU "geography", although listed under "social
+    sciences", lists results for both, "physical geography" and
+    "geography". Therefore, the fraction of "Geography (Social Sciences)
+    is calculated by the difference between search for "Geography" and
+    "Physical Geography".
+
+<!-- -->
+
+    library(dplyr)
+
+    queries <- data_frame(
+      "Research Area" = rep(c("Geography","Geography (Social Science)", "Physical Geography","Geology","Environmental Sciences & Ecology","Sociology","Philosophy"), 2),
+      "Search" = c(rep("all Topics", 7), rep("Anthropocene", 7)),
+      "WoS query" = c(12, NA, 9, 8, 5, 15, 13, 11, NA, 10, 7, 4, 14, 2),
+      "Count" = c(111440, NA, 66210, 300769, 766609, 74984, 100220, 275, NA, 147, 231, 476, 40, 78))
+
+    queries$Count[queries$`Research Area`=="Geography (Social Science)"] <-
+      queries$Count[queries$`Research Area`=="Geography"] - queries$Count[queries$`Research Area`=="Physical Geography"]
+
+    knitr::kable(queries)
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">Research Area</th>
+<th align="left">Search</th>
+<th align="right">WoS query</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Geography</td>
+<td align="left">all Topics</td>
+<td align="right">12</td>
+<td align="right">111440</td>
+</tr>
+<tr class="even">
+<td align="left">Geography (Social Science)</td>
+<td align="left">all Topics</td>
+<td align="right">NA</td>
+<td align="right">45230</td>
+</tr>
+<tr class="odd">
+<td align="left">Physical Geography</td>
+<td align="left">all Topics</td>
+<td align="right">9</td>
+<td align="right">66210</td>
+</tr>
+<tr class="even">
+<td align="left">Geology</td>
+<td align="left">all Topics</td>
+<td align="right">8</td>
+<td align="right">300769</td>
+</tr>
+<tr class="odd">
+<td align="left">Environmental Sciences &amp; Ecology</td>
+<td align="left">all Topics</td>
+<td align="right">5</td>
+<td align="right">766609</td>
+</tr>
+<tr class="even">
+<td align="left">Sociology</td>
+<td align="left">all Topics</td>
+<td align="right">15</td>
+<td align="right">74984</td>
+</tr>
+<tr class="odd">
+<td align="left">Philosophy</td>
+<td align="left">all Topics</td>
+<td align="right">13</td>
+<td align="right">100220</td>
+</tr>
+<tr class="even">
+<td align="left">Geography</td>
+<td align="left">Anthropocene</td>
+<td align="right">11</td>
+<td align="right">275</td>
+</tr>
+<tr class="odd">
+<td align="left">Geography (Social Science)</td>
+<td align="left">Anthropocene</td>
+<td align="right">NA</td>
+<td align="right">128</td>
+</tr>
+<tr class="even">
+<td align="left">Physical Geography</td>
+<td align="left">Anthropocene</td>
+<td align="right">10</td>
+<td align="right">147</td>
+</tr>
+<tr class="odd">
+<td align="left">Geology</td>
+<td align="left">Anthropocene</td>
+<td align="right">7</td>
+<td align="right">231</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Sciences &amp; Ecology</td>
+<td align="left">Anthropocene</td>
+<td align="right">4</td>
+<td align="right">476</td>
+</tr>
+<tr class="odd">
+<td align="left">Sociology</td>
+<td align="left">Anthropocene</td>
+<td align="right">14</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="left">Philosophy</td>
+<td align="left">Anthropocene</td>
+<td align="right">2</td>
+<td align="right">78</td>
+</tr>
+</tbody>
+</table>
+
+    all_topics <- queries[queries$Search=="all Topics",]
+    anthrop <- queries[queries$Search=="Anthropocene",]
+
+    query_fraction <- all_topics %>%    
+      mutate("Count (Anthropocene)" = anthrop$Count,
+             "Fraction (%)" = (anthrop$Count / Count) * 100) %>%
+      select(-Search, -"WoS query")
+      
+    knitr::kable(query_fraction)
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">Research Area</th>
+<th align="right">Count</th>
+<th align="right">Count (Anthropocene)</th>
+<th align="right">Fraction (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Geography</td>
+<td align="right">111440</td>
+<td align="right">275</td>
+<td align="right">0.2467696</td>
+</tr>
+<tr class="even">
+<td align="left">Geography (Social Science)</td>
+<td align="right">45230</td>
+<td align="right">128</td>
+<td align="right">0.2829980</td>
+</tr>
+<tr class="odd">
+<td align="left">Physical Geography</td>
+<td align="right">66210</td>
+<td align="right">147</td>
+<td align="right">0.2220208</td>
+</tr>
+<tr class="even">
+<td align="left">Geology</td>
+<td align="right">300769</td>
+<td align="right">231</td>
+<td align="right">0.0768031</td>
+</tr>
+<tr class="odd">
+<td align="left">Environmental Sciences &amp; Ecology</td>
+<td align="right">766609</td>
+<td align="right">476</td>
+<td align="right">0.0620916</td>
+</tr>
+<tr class="even">
+<td align="left">Sociology</td>
+<td align="right">74984</td>
+<td align="right">40</td>
+<td align="right">0.0533447</td>
+</tr>
+<tr class="odd">
+<td align="left">Philosophy</td>
+<td align="right">100220</td>
+<td align="right">78</td>
+<td align="right">0.0778288</td>
+</tr>
+</tbody>
+</table>
 
 References
 ==========
@@ -359,6 +416,13 @@ Rectangular Text Data*. <https://CRAN.R-project.org/package=readr>.
 Colophon
 ========
 
+The analysis is conducted using R (R Core Team 2017) and the contributed
+packages `rmarkdown` (Allaire et al. 2018), `magrittr` (Bache and
+Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
+(Wickham et al. 2017), `readr` (Wickham, Hester, and Francois 2017),
+`tidyr` (Wickham and Henry 2018), `ggplot2` (Wickham 2009) and `ggrepel`
+(Slowikowski 2017).
+
     devtools::session_info()
 
     ## Session info -------------------------------------------------------------
@@ -370,7 +434,7 @@ Colophon
     ##  language en_US:en                    
     ##  collate  en_US.UTF-8                 
     ##  tz       Europe/Berlin               
-    ##  date     2018-04-16
+    ##  date     2018-04-20
 
     ## Packages -----------------------------------------------------------------
 
@@ -401,6 +465,7 @@ Colophon
     ##  grDevices     * 3.4.4      2018-03-15
     ##  grid            3.4.4      2018-03-15
     ##  gtable          0.2.0      2016-02-26
+    ##  highr           0.6        2016-05-09
     ##  hms             0.4.2      2018-03-10
     ##  htmltools       0.3.6      2017-04-28
     ##  httr            1.3.1      2017-08-20
@@ -472,6 +537,7 @@ Colophon
     ##  local                                 
     ##  local                                 
     ##  cran (@0.2.0)                         
+    ##  CRAN (R 3.4.0)                        
     ##  CRAN (R 3.4.4)                        
     ##  CRAN (R 3.4.0)                        
     ##  CRAN (R 3.4.1)                        
