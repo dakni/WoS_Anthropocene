@@ -149,6 +149,69 @@ query_fraction <- all_topics %>%
 knitr::kable(query_fraction)
 ```
 
+# Chronology
+
+```{r chronology}
+library(ggplot2)
+chronology_all <- raw_tbl %>%  
+  mutate(SC = strsplit(as.character(SC), ";")) %>%  
+  unnest %>%
+  mutate(SC = trimws(x = SC, which = "left")) %>%  
+  mutate(SC = as.factor(SC)) %>%
+  filter(PY != 2018) %>%  
+  group_by(PY) %>%
+  summarize(count = n()) %>%
+  mutate(frac = (count/sum(count)) * 100,
+         Type = "All")
+
+ggplot(data = chronology_all,
+       mapping = aes(x = PY, y = frac)) +
+  geom_line() +
+  theme_minimal()
+
+chronology_geography <- raw_tbl %>%  
+  mutate(SC = strsplit(as.character(SC), ";")) %>%  
+  unnest %>%
+  mutate(SC = trimws(x = SC, which = "left")) %>%  
+  mutate(SC = as.factor(SC)) %>%
+  filter(PY != 2018,
+         SC == "GEOGRAPHY") %>%  
+  group_by(PY) %>%
+  summarize(count = n()) %>%
+  mutate(frac = (count/sum(count)) * 100,
+         Type = "Geography")
+
+ggplot(data = chronology_geography,
+       mapping = aes(x = PY, y = frac)) +
+  geom_line() +
+  theme_minimal()
+
+chronology_phygeography <- raw_tbl %>%  
+  mutate(SC = strsplit(as.character(SC), ";")) %>%  
+  unnest %>%
+  mutate(SC = trimws(x = SC, which = "left")) %>%  
+  mutate(SC = as.factor(SC)) %>%
+  filter(PY != 2018,
+         SC == "GEOGRAPHY, PHYSICAL") %>%  
+  group_by(PY) %>%
+  summarize(count = n()) %>%
+  mutate(frac = (count/sum(count)) * 100,
+         Type = "Physical Geography")
+
+ggplot(data = chronology_phygeography,
+       mapping = aes(x = PY, y = frac)) +
+  geom_line() +
+  theme_minimal()
+
+chronology_coll <- bind_rows(
+  chronology_all,
+  chronology_geography,
+  chronology_phygeography)
+
+ggplot(chronology_coll, mapping = aes(x = PY, y = frac, linetype = Type)) +
+  geom_line()
+```
+
 
 # References
 
