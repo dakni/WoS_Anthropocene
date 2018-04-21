@@ -376,6 +376,105 @@ Notes:
 </tbody>
 </table>
 
+    knitr::kable(query_fraction, format = "latex", caption = "TEXT", booktabs = T) %>%
+      kableExtra::kable_styling(latex_options = "striped")
+
+Chronology
+==========
+
+    library(ggplot2)
+    chronology_all <- raw_tbl %>%  
+      mutate(SC = strsplit(as.character(SC), ";")) %>%  
+      unnest %>%
+      mutate(SC = trimws(x = SC, which = "left")) %>%  
+      mutate(SC = as.factor(SC)) %>%
+      filter(PY != 2018) %>%  
+      group_by(PY) %>%
+      summarize(count = n()) %>%
+      mutate(frac = (count/sum(count)) * 100,
+             Type = "All")
+
+    ggplot(data = chronology_all,
+           mapping = aes(x = PY, y = frac)) +
+      geom_line() +
+      theme_minimal()
+
+![](Bibliometry_files/figure-markdown_strict/chronology-1.png)
+
+    chronology_geography <- raw_tbl %>%  
+      mutate(SC = strsplit(as.character(SC), ";")) %>%  
+      unnest %>%
+      mutate(SC = trimws(x = SC, which = "left")) %>%  
+      mutate(SC = as.factor(SC)) %>%
+      filter(PY != 2018,
+             SC == "GEOGRAPHY") %>%  
+      group_by(PY) %>%
+      summarize(count = n()) %>%
+      mutate(frac = (count/sum(count)) * 100,
+             Type = "Geography")
+
+    ggplot(data = chronology_geography,
+           mapping = aes(x = PY, y = frac)) +
+      geom_line() +
+      theme_minimal()
+
+![](Bibliometry_files/figure-markdown_strict/chronology-2.png)
+
+    chronology_phygeography <- raw_tbl %>%  
+      mutate(SC = strsplit(as.character(SC), ";")) %>%  
+      unnest %>%
+      mutate(SC = trimws(x = SC, which = "left")) %>%  
+      mutate(SC = as.factor(SC)) %>%
+      filter(PY != 2018,
+             SC == "GEOGRAPHY, PHYSICAL") %>%  
+      group_by(PY) %>%
+      summarize(count = n()) %>%
+      mutate(frac = (count/sum(count)) * 100,
+             Type = "Physical Geography")
+
+    ggplot(data = chronology_phygeography,
+           mapping = aes(x = PY, y = frac)) +
+      geom_line() +
+      theme_minimal()
+
+![](Bibliometry_files/figure-markdown_strict/chronology-3.png)
+
+    chronology_coll <- bind_rows(
+      chronology_all,
+      chronology_geography,
+      chronology_phygeography)
+
+    chronology_all_plot <-
+      ggplot(chronology_coll, mapping = aes(x = PY, y = frac, linetype = Type)) +
+      geom_line() +
+      labs(x = "Year", y = "proportion (%)") +
+      theme_minimal() +
+      theme(panel.background = element_rect(fill = "white"))
+
+    library(cowplot)
+
+    ## 
+    ## Attaching package: 'cowplot'
+
+    ## The following object is masked from 'package:ggplot2':
+    ## 
+    ##     ggsave
+
+    ra_chron_plot <- ggdraw() +
+      draw_plot(ra_plot) +
+      draw_plot(chronology_all_plot +
+                  theme(legend.justification = "bottom"), .5, .4, .5, .4) +
+      draw_plot_label(c("A", "B"), c(0, 0.5), c(1, 0.80), size = 15)
+
+    ggsave(filename = "ResearchArea_chron_plot.png",
+           plot = ra_chron_plot,
+           scale = 2,
+           width = 15,
+           height = 8,
+           dpi = 300,
+           device = "png",
+           units = "cm")
+
 References
 ==========
 
@@ -434,7 +533,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  language en_US:en                    
     ##  collate  en_US.UTF-8                 
     ##  tz       Europe/Berlin               
-    ##  date     2018-04-20
+    ##  date     2018-04-21
 
     ## Packages -----------------------------------------------------------------
 
@@ -449,6 +548,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  cluster         2.0.7      2018-04-01
     ##  colorspace      1.3-2      2016-12-14
     ##  compiler        3.4.4      2018-03-15
+    ##  cowplot       * 0.9.2      2017-12-17
     ##  crayon          1.3.4      2017-09-16
     ##  datasets      * 3.4.4      2018-03-15
     ##  devtools        1.13.5     2018-02-18
@@ -470,6 +570,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  htmltools       0.3.6      2017-04-28
     ##  httr            1.3.1      2017-08-20
     ##  igraph          1.2.1      2018-03-10
+    ##  kableExtra      0.7.0      2018-01-15
     ##  knitr           1.20       2018-02-20
     ##  labeling        0.3        2014-08-23
     ##  lattice         0.20-35    2017-03-25
@@ -495,6 +596,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  rmarkdown       1.9        2018-03-01
     ##  rprojroot       1.3-2      2018-01-03
     ##  rscopus         0.5.3      2017-10-11
+    ##  rvest           0.3.2      2016-06-17
     ##  scales          0.5.0.9000 2017-08-30
     ##  scatterplot3d   0.3-41     2018-03-14
     ##  SnowballC       0.5.1      2014-08-09
@@ -508,7 +610,9 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  tools           3.4.4      2018-03-15
     ##  utf8            1.1.3      2018-01-03
     ##  utils         * 3.4.4      2018-03-15
+    ##  viridisLite     0.3.0      2018-02-01
     ##  withr           2.1.2      2018-03-15
+    ##  xml2            1.2.0      2018-01-24
     ##  yaml            2.1.18     2018-03-08
     ##  source                                
     ##  CRAN (R 3.4.0)                        
@@ -521,6 +625,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  CRAN (R 3.4.4)                        
     ##  cran (@1.3-2)                         
     ##  local                                 
+    ##  CRAN (R 3.4.3)                        
     ##  CRAN (R 3.4.2)                        
     ##  local                                 
     ##  CRAN (R 3.4.3)                        
@@ -542,6 +647,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  CRAN (R 3.4.0)                        
     ##  CRAN (R 3.4.1)                        
     ##  CRAN (R 3.4.4)                        
+    ##  CRAN (R 3.4.3)                        
     ##  CRAN (R 3.4.3)                        
     ##  CRAN (R 3.4.3)                        
     ##  CRAN (R 3.4.2)                        
@@ -567,6 +673,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  CRAN (R 3.4.3)                        
     ##  CRAN (R 3.4.4)                        
     ##  cran (@0.5.3)                         
+    ##  CRAN (R 3.4.1)                        
     ##  Github (hadley/scales@d767915)        
     ##  CRAN (R 3.4.4)                        
     ##  cran (@0.5.1)                         
@@ -580,5 +687,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  local                                 
     ##  cran (@1.1.3)                         
     ##  local                                 
+    ##  cran (@0.3.0)                         
+    ##  CRAN (R 3.4.4)                        
     ##  CRAN (R 3.4.4)                        
     ##  CRAN (R 3.4.4)

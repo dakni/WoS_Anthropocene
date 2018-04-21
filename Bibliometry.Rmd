@@ -147,6 +147,10 @@ query_fraction <- all_topics %>%
   select(-Search, -"WoS query")
   
 knitr::kable(query_fraction)
+
+knitr::kable(query_fraction, format = "latex", caption = "TEXT", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = "striped")
+    
 ```
 
 # Chronology
@@ -208,9 +212,34 @@ chronology_coll <- bind_rows(
   chronology_geography,
   chronology_phygeography)
 
-ggplot(chronology_coll, mapping = aes(x = PY, y = frac, linetype = Type)) +
-  geom_line()
+chronology_all_plot <-
+  ggplot(chronology_coll, mapping = aes(x = PY, y = frac, linetype = Type)) +
+  geom_line() +
+  labs(x = "Year", y = "proportion (%)") +
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "white"))
+
+library(cowplot)
+
+ra_chron_plot <- ggdraw() +
+  draw_plot(ra_plot) +
+  draw_plot(chronology_all_plot +
+              theme(legend.justification = "bottom"), .5, .4, .5, .4) +
+  draw_plot_label(c("A", "B"), c(0, 0.5), c(1, 0.80), size = 15)
+
+ggsave(filename = "ResearchArea_chron_plot.png",
+       plot = ra_chron_plot,
+       scale = 2,
+       width = 15,
+       height = 8,
+       dpi = 300,
+       device = "png",
+       units = "cm")
+
 ```
+
+
+
 
 
 # References
