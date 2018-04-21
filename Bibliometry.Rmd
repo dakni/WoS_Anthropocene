@@ -168,11 +168,6 @@ chronology_all <- raw_tbl %>%
   mutate(frac = (count/sum(count)) * 100,
          Type = "All")
 
-ggplot(data = chronology_all,
-       mapping = aes(x = PY, y = frac)) +
-  geom_line() +
-  theme_minimal()
-
 chronology_geography <- raw_tbl %>%  
   mutate(SC = strsplit(as.character(SC), ";")) %>%  
   unnest %>%
@@ -184,11 +179,6 @@ chronology_geography <- raw_tbl %>%
   summarize(count = n()) %>%
   mutate(frac = (count/sum(count)) * 100,
          Type = "Geography")
-
-ggplot(data = chronology_geography,
-       mapping = aes(x = PY, y = frac)) +
-  geom_line() +
-  theme_minimal()
 
 chronology_phygeography <- raw_tbl %>%  
   mutate(SC = strsplit(as.character(SC), ";")) %>%  
@@ -202,11 +192,6 @@ chronology_phygeography <- raw_tbl %>%
   mutate(frac = (count/sum(count)) * 100,
          Type = "Physical Geography")
 
-ggplot(data = chronology_phygeography,
-       mapping = aes(x = PY, y = frac)) +
-  geom_line() +
-  theme_minimal()
-
 chronology_coll <- bind_rows(
   chronology_all,
   chronology_geography,
@@ -219,6 +204,8 @@ chronology_all_plot <-
   theme_minimal() +
   theme(panel.background = element_rect(fill = "white"))
 
+chronology_all_plot
+
 library(cowplot)
 
 ra_chron_plot <- ggdraw() +
@@ -226,6 +213,8 @@ ra_chron_plot <- ggdraw() +
   draw_plot(chronology_all_plot +
               theme(legend.justification = "bottom"), .5, .4, .5, .4) +
   draw_plot_label(c("A", "B"), c(0, 0.5), c(1, 0.80), size = 15)
+
+ra_chron_plot
 
 ggsave(filename = "ResearchArea_chron_plot.png",
        plot = ra_chron_plot,

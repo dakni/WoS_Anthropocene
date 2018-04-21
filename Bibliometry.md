@@ -394,13 +394,6 @@ Chronology
       mutate(frac = (count/sum(count)) * 100,
              Type = "All")
 
-    ggplot(data = chronology_all,
-           mapping = aes(x = PY, y = frac)) +
-      geom_line() +
-      theme_minimal()
-
-![](Bibliometry_files/figure-markdown_strict/chronology-1.png)
-
     chronology_geography <- raw_tbl %>%  
       mutate(SC = strsplit(as.character(SC), ";")) %>%  
       unnest %>%
@@ -412,13 +405,6 @@ Chronology
       summarize(count = n()) %>%
       mutate(frac = (count/sum(count)) * 100,
              Type = "Geography")
-
-    ggplot(data = chronology_geography,
-           mapping = aes(x = PY, y = frac)) +
-      geom_line() +
-      theme_minimal()
-
-![](Bibliometry_files/figure-markdown_strict/chronology-2.png)
 
     chronology_phygeography <- raw_tbl %>%  
       mutate(SC = strsplit(as.character(SC), ";")) %>%  
@@ -432,13 +418,6 @@ Chronology
       mutate(frac = (count/sum(count)) * 100,
              Type = "Physical Geography")
 
-    ggplot(data = chronology_phygeography,
-           mapping = aes(x = PY, y = frac)) +
-      geom_line() +
-      theme_minimal()
-
-![](Bibliometry_files/figure-markdown_strict/chronology-3.png)
-
     chronology_coll <- bind_rows(
       chronology_all,
       chronology_geography,
@@ -450,6 +429,10 @@ Chronology
       labs(x = "Year", y = "proportion (%)") +
       theme_minimal() +
       theme(panel.background = element_rect(fill = "white"))
+
+    chronology_all_plot
+
+![](Bibliometry_files/figure-markdown_strict/chronology-1.png)
 
     library(cowplot)
 
@@ -465,6 +448,10 @@ Chronology
       draw_plot(chronology_all_plot +
                   theme(legend.justification = "bottom"), .5, .4, .5, .4) +
       draw_plot_label(c("A", "B"), c(0, 0.5), c(1, 0.80), size = 15)
+
+    ra_chron_plot
+
+![](Bibliometry_files/figure-markdown_strict/chronology-2.png)
 
     ggsave(filename = "ResearchArea_chron_plot.png",
            plot = ra_chron_plot,
