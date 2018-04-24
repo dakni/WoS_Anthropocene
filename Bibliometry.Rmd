@@ -29,7 +29,7 @@ library(bibliometrix)
 raw_data <- readFiles("./data/wos_query_anthropocene/wos_anthropocene_topic_0001-500.bib", 
                       "./data/wos_query_anthropocene/wos_anthropocene_topic_0501-1000.bib",
                       "./data/wos_query_anthropocene/wos_anthropocene_topic_1001-1500.bib",
-                      "./data/wos_query_anthropocene/wos_anthropocene_topic_1500-1610.bib")
+                      "./data/wos_query_anthropocene/wos_anthropocene_topic_1500-1510.bib")
 raw_df <- convert2df(file = raw_data, dbsource = "isi", format = "bibtex")
 ```
 

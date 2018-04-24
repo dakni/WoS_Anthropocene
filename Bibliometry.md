@@ -1,4 +1,4 @@
-Data was downloaded on Fri Apr 20 2018 from [Web of
+Data was downloaded on Tue Apr 24 2018 from [Web of
 Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=)
 using advanced search and the query "TS=anthropocene". TS is the Web of
 Science tag for "Topic Field" and includes the following fields
@@ -35,7 +35,7 @@ package (Aria and Cuccurullo 2017).
     raw_data <- readFiles("./data/wos_query_anthropocene/wos_anthropocene_topic_0001-500.bib", 
                           "./data/wos_query_anthropocene/wos_anthropocene_topic_0501-1000.bib",
                           "./data/wos_query_anthropocene/wos_anthropocene_topic_1001-1500.bib",
-                          "./data/wos_query_anthropocene/wos_anthropocene_topic_1500-1610.bib")
+                          "./data/wos_query_anthropocene/wos_anthropocene_topic_1500-1510.bib")
     raw_df <- convert2df(file = raw_data, dbsource = "isi", format = "bibtex")
 
     ## Articles extracted   100 
@@ -53,8 +53,7 @@ package (Aria and Cuccurullo 2017).
     ## Articles extracted   1300 
     ## Articles extracted   1400 
     ## Articles extracted   1500 
-    ## Articles extracted   1600 
-    ## Articles extracted   1610
+    ## Articles extracted   1511
 
 [Web of Science Core Collection Field
 Tags](https://images.webofknowledge.com/images/help/WOS/hs_wos_fieldtags.html)
@@ -520,7 +519,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  language en_US:en                    
     ##  collate  en_US.UTF-8                 
     ##  tz       Europe/Berlin               
-    ##  date     2018-04-21
+    ##  date     2018-04-24
 
     ## Packages -----------------------------------------------------------------
 
@@ -540,7 +539,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  datasets      * 3.4.4      2018-03-15
     ##  devtools        1.13.5     2018-02-18
     ##  digest          0.6.15     2018-01-28
-    ##  dplyr         * 0.7.4.9004 2018-04-10
+    ##  dplyr         * 0.7.5      2018-04-23
     ##  evaluate        0.10.1     2017-06-24
     ##  factoextra      1.0.5.999  2017-12-19
     ##  FactoMineR      1.39       2017-11-10
@@ -579,7 +578,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  Rcpp            0.12.16    2018-03-13
     ##  readr         * 1.1.1      2017-05-16
     ##  RISmed          2.1.7      2017-06-06
-    ##  rlang           0.2.0.9001 2018-04-09
+    ##  rlang           0.2.0.9001 2018-04-23
     ##  rmarkdown       1.9        2018-03-01
     ##  rprojroot       1.3-2      2018-01-03
     ##  rscopus         0.5.3      2017-10-11
@@ -617,7 +616,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  local                                 
     ##  CRAN (R 3.4.3)                        
     ##  cran (@0.6.15)                        
-    ##  Github (tidyverse/dplyr@bfc9b28)      
+    ##  Github (tidyverse/dplyr@fbbf157)      
     ##  CRAN (R 3.4.1)                        
     ##  Github (kassambara/factoextra@e76c5bb)
     ##  CRAN (R 3.4.2)                        
@@ -656,7 +655,7 @@ Wickham 2014), `bibliometrix` (Aria and Cuccurullo 2017), `dplyr`
     ##  cran (@0.12.16)                       
     ##  CRAN (R 3.4.0)                        
     ##  CRAN (R 3.4.4)                        
-    ##  Github (tidyverse/rlang@9c0637a)      
+    ##  Github (tidyverse/rlang@82b2727)      
     ##  CRAN (R 3.4.3)                        
     ##  CRAN (R 3.4.4)                        
     ##  cran (@0.5.3)                         
