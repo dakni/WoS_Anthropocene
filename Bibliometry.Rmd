@@ -6,7 +6,7 @@ bibliography: references.bib
 output: md_document
 ---
 
-Data was downloaded on Fri Apr 20 2018 from [Web of Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=) using advanced search and the query "TS=anthropocene". TS is the Web of Science tag for "Topic Field" and includes the following fields [source](https://images.webofknowledge.com/WOKRS528R15/help/WOS/hs_topic.html):
+Data was downloaded on Tue Apr 24 2018 from [Web of Science](http://apps.webofknowledge.com/summary.do?product=WOS&search_mode=GeneralSearch&qid=1&SID=F2uyu8Tz33gg81ezRRV&page=) using advanced search and the query "TS=anthropocene". TS is the Web of Science tag for "Topic Field" and includes the following fields [source](https://images.webofknowledge.com/WOKRS528R15/help/WOS/hs_topic.html):
 
 - Title
 - Abstract
